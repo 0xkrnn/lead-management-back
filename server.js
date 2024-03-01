@@ -18,7 +18,7 @@ db.once("open", () => console.log("connected to DB"))
 
 // middlewares
 app.use(cors({
-    origin : "*"
+    origin : "http://localhost:5173"
 }));
 app.use(express.json());
 app.use(cookieParser());
