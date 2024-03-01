@@ -14,13 +14,13 @@ Content-Type: application/json
 
 ###
 
-POST http://localhost:3500/api/register
+POST http://localhost:3501/api/user/register
 Content-Type: "application/json"
 Accept: "application/json"
 
 {
-    email : "hello@gmai7l.com"
-    password : "kkvjhgvh"
+    "email" : "hello@gmai7l.com",
+    "password" : "kkvjhgvh"
 }
 
 ###

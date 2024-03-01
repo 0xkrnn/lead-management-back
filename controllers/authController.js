@@ -12,7 +12,7 @@ const handleRegister = async (req, res) => {
         console.log(exist)
 
         if (!exist) {
-            const hashedPwd = await bcrypt.hash(req.body.password, 10)
+            const hashedPwd = bcrypt.hashSync(String(req.body.password), 10)
 
             const user = await new authModel({
                 email: req.body.email,
@@ -27,8 +27,8 @@ const handleRegister = async (req, res) => {
         }
 
     } catch (err) {
-        console.log(err)
         res.json({ "error": err.message })
+        console.log(err)
     }
 
 }
@@ -40,7 +40,7 @@ const handleLogin = async (req, res) => {
     if (!user) {
         return res.status(400).json({ "message": "unauthorized" });
     } else {
-        const match = await bcrypt.compare(req.body.password, user.password)
+        const match = await bcrypt.compare(String(req.body.password), user.password)
         if (match) {
             const accessToken = jwt.sign({ id: user._id }, process.env.SECRET_KEY);
             console.log(accessToken);
